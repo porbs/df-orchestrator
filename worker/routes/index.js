@@ -3,12 +3,13 @@ var router = express.Router();
 const _ = require('lodash');
 const request = require('request-promise');
 const asyncHandler = require('express-async-handler');
+const service = require('../services/service');
 
 const state = {};
 
-function operation(a, b) {
-  console.log(`performing: ${a} + ${b}`);
-  return a + b;
+function operation(opName, args) {
+  console.log(`performing: ${a}`);
+  return service[opName](args);
 }
 
 function parseInputs(inputs) {
@@ -47,7 +48,7 @@ router.post('/execute', asyncHandler(async (req, res, next) => {
 
   if (canExecute(sessionKey, operationKey)) {
     console.log(prefix + ' can be executed');
-    const result = operation(...state[sessionKey][operationKey].inputs);
+    const result = await operation(...state[sessionKey][operationKey].inputs);
     const outputs = job.outputs;
 
     for (let output of outputs) {
