@@ -4,15 +4,25 @@ curl --location --request POST 'localhost:3000/execute/' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "$a": {
-        "inputs": [3, 2],
-        "outputs": ["$c"]
+        "inputs": [
+            "fetchLatestData",
+            "https://pomber.github.io/covid19/timeseries.json"
+        ],
+        "outputs": ["$b"]
     },
    "$b": {
-        "inputs": [3, 4],
+        "inputs": [
+            "processData",
+            "$a"
+        ],
         "outputs": ["$c"]
     },
     "$c": {
-        "inputs": ["$a", "$b"],
+        "inputs": [
+            "trainRNN",
+            "$b",
+            "7"
+        ],
         "outputs": ["$result"]
     }
 }'

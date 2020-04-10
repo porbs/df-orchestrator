@@ -7,9 +7,9 @@ const service = require('../services/service');
 
 const state = {};
 
-function operation(opName, args) {
-  console.log(`performing: ${a}`);
-  return service[opName](args);
+function operation(opName, ...args) {
+  console.log(`performing: ${opName}`);
+  return service[opName](...args);
 }
 
 function parseInputs(inputs) {
