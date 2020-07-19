@@ -10,7 +10,7 @@
     "debug": "~2.6.9",
     "express": "~4.16.1",
     "express-async-handler": "^1.1.4",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.19",
     "morgan": "~1.9.1",
     "request": "^2.88.2",
     "request-promise": "^4.2.5"
